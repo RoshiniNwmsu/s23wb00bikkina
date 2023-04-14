@@ -27,6 +27,8 @@ var umbrellaRouter = require('./routes/umbrella');
 var boardRouter = require('./routes/board');
 var selectorRouter = require('./routes/selector');
 var umbrella = require("./models/umbrella");
+var resourceRouter = require("./models/resource");
+
 
 var app = express();
 
@@ -45,6 +47,7 @@ app.use('/users', usersRouter);
 app.use('/umbrella', umbrellaRouter);
 app.use('/board', boardRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter);
 // We can seed the collection if needed on server start
 async function recreateDB(){
  // Delete everything
@@ -56,15 +59,15 @@ async function recreateDB(){
  console.error(err)
  });
  let instance2 = new umbrella({color:"green",cost:20,size:"medium"});
- instance1.save().then(doc=>{
- console.log("First object saved")}
+ instance2.save().then(doc=>{
+ console.log("Second object saved")}
  ).catch(err=>{
  console.error(err)
  });
 
  let instance3 = new umbrella({color:"yellow",cost:19,size:"large"});
- instance1.save().then(doc=>{
- console.log("First object saved")}
+ instance3.save().then(doc=>{
+ console.log("Third object saved")}
  ).catch(err=>{
  console.error(err)
  });
